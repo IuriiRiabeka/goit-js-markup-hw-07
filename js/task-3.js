@@ -1,36 +1,18 @@
-class StringBuilder {
-  #value = String;
-  constructor(initialValue) {
-    this.#value = initialValue;
+// Отримуємо посилання на елементи інпуту та спана
+const input = document.querySelector('#name-input');
+const output = document.querySelector('#name-output');
+
+// Додаємо обробник події input до інпуту
+input.addEventListener('input', event => {
+  // Отримуємо поточне значення інпуту
+  const inputValue = event.target.value.trim(); // Очищаємо від пробілів по краях
+
+  // Перевіряємо, чи інпут не порожній та не містить лише пробіли
+  if (inputValue.length > 0) {
+    // Якщо так, встановлюємо значення з інпуту у спан
+    output.textContent = inputValue;
+  } else {
+    // Якщо інпут порожній або містить лише пробіли, встановлюємо "Anonymous"
+    output.textContent = 'Anonymous';
   }
-  getValue() {
-    return this.#value
-  };
-  padStart(str) {
-    this.#value = str.concat(this.#value);
-    return this.#value;
-  }
-  padEnd(str) {
-    this.#value = this.#value.concat(str);
-    return this.#value;
-  }
-
-  padBoth(str) {
-    this.#value = str + this.#value.concat(str);
-    return this.#value;
-  }
-
-
-
-}
-
-
-
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+});
